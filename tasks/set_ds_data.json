@@ -1,0 +1,126 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Task to update DS data for the API as a single json object https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#put-ds. To test this and ldap connectivity you can use a public LDAP (http://techsmruti.com/online-ldap-test-server/ for example) the data for this is included in the task",
+  "parameters":{
+     "name": {
+       "description": "Used to refer to DS elsewhere in the UI
+        Example: 'My awesome AD server'",
+       "type": "String"
+     }
+     "help_link": {
+       "description": "Static link hosted by customer for LDAP login assistance
+       Example**: 'https://doge.com/help-logging-in-with-ldap' ",
+       "type": "Optional[String[1]]"
+     }
+     "hostname": {
+       "description": "Example: 'ldap.forumsys.com' ",
+       "type": "String[1]"
+     * Port
+       * `port`
+       * **Required**
+       * **Example**: 389
+     * Lookup User
+       * `login`
+       * RBAC will use this login to query the directory service when looking for user and group data.
+       * **Optional**
+       * **Example**: cn=admin,ou=users,dc=puppetlabs,dc=com
+     * Lookup Password
+       * `password`
+       * **Optional**
+       * **Note**: This value will be stored and transmitted in plain text.
+       * **Example**: "s3cr!tz1"
+     * Connection Timeout (in seconds)
+       * `connect_timeout`
+       * **Optional**
+       * **Example**: 10
+     * Connect using SSL?
+       * `ssl`
+       * **Required**
+       * **Example**: `true`
+    * Use SSL hostname verification
+      * `ssl_hostname_validation`
+      * RBAC will verify that the DS hostname used to connect matches the certificate hostname when using SSL.
+      * **Optional**
+      * **Example**: `true`
+    * Allow wildcards in SSL hostname verification
+      * `ssl_wildcard_validation`
+      * RBAC will allow wildcards within certificates when verifying SSL hostname connections to DS.
+      * **Optional**
+      * **Example**: `false`
+     * Connect using startTLS?
+       * `start_tls`
+       * **Optional**
+       * **Example**: `false`
+     * Base Distinguished Name
+       * `base_dn`
+       * Needed for constructing queries and binding as lookup user.
+       * **Required**
+       * **Example**: "dc=puppetlabs,dc=com"
+
+
+    ## Querying
+
+     * User Login Attribute
+       * `user_lookup_attr`
+       * Needed for constructing queries.
+       * **Required**
+       * **Example**: "cn"
+
+     * User Email Address
+       * `user_email_attr`
+       * Needed to pull email of user
+       * **Required**
+       * **Example**: "mail"
+
+     * User Full Name
+       * `user_display_name_attr`
+       * Needed to pull display name of user
+       * **Required**
+       * **Example**: "displayName"
+
+     * User RDN
+       * `user_rdn`
+       * Needed for constructing queries.
+       * **Required**
+       * **Example**: "cn=Users"
+
+     * Group ObjectClass
+       * `group_object_class`
+       * Needed when searching for groups. If not set, will default to "\*".
+       * **Optional**
+       * **Example**: "group"
+
+     * Group Membership Field
+       * `group_member_attr`
+       * Needed to determine group membership
+       * **Required**
+       * **Example**: "member"
+
+     * Group Name Attribute
+       * `group_name_attr`
+       * Needed to pull the name of a group
+       * **Required**
+       * **Example**: "name"
+
+     * Group Lookup Attribute
+       * `group_lookup_attr`
+       * Needed for constructing queries.
+       * **Required**
+       * **Example**: "cn"
+
+     * Group RDN
+       * `group_rdn`
+       * Needed for constructing queries.
+       * **Required**
+       * **Example**: "cn=Groups"
+
+     * Disable LDAP\_MATCHING\_RULE\_IN\_CHAIN
+       * `disable_ldap_matching_rule_in_chain`
+       * Set via the API only. This disables a performance shortcut that we use for
+         AD 2003 or AD 2008 and greater but that fails on certain datasets.
+         Customers, with the help of support, will set this option as needed.
+       * **Optional**
+       * **Example**: true
+}
+}
