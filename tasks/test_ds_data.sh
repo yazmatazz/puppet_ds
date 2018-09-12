@@ -1,6 +1,6 @@
 #!/bin/sh
-# Puppet Task Name: get_ds_data
-#
+# Puppet Task Name: test_ds_data
+# To test this and ldap connectivity you can use a public LDAP (http://techsmruti.com/online-ldap-test-server/ for example) 
 # This is where you put the shell code for your task.
 #
 # You can write Puppet tasks in any language you want and it's easy to

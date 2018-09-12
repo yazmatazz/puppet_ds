@@ -1,7 +1,7 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "Task to retrieve current DS data from API https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#get-ds. The output is parsed with python and formatted"
+  "description": "Task to retrieve current DS data from API https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#get-ds. The output is parsed with python and formatted",
   "parameters": {
   }
 }
