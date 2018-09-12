@@ -1,0 +1,7 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Unset ds data as https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#request-format-01 will unset your external directory settings in the console",
+  "parameters": {
+  }
+}
