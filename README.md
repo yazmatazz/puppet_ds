@@ -1,15 +1,11 @@
 
 # puppet_ds
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
+## Puppet Directory Service
 
-The README template below provides a starting point with details about what information to include in your README.
+The Puppet_ds module encapsulates usage of the rbac_api/v1/ds end point [https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#put-ds](https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#put-ds)for configuring usage of a Directory Service (DS) for Role Based Access and Control(RBAC) of the Puppet Console.
 
-
-
-
-
-
+The v 0.1.0, version of this is Puppet Task based only.
 
 #### Table of Contents
 
@@ -23,72 +19,73 @@ The README template below provides a starting point with details about what info
 5. [Development - Guide for contributing to the module](#development)
 
 ## Description
-
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
-
-This should be a fairly short description helps the user decide if your module is what they want.
-
+The module provides capabilities to use [https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#put-ds] (https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#put-ds) to get, set and test the directory services with a `Puppet Task` or by directly using the scripts provided as tasks during bootstrap and install of the Puppet Enterprise server.
 
 ## Setup
 
 ### What puppet_ds affects **OPTIONAL**
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
 
-If there's more that they should know about, though, this is the place to mention:
-
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
 
 ### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
+You will need a active and reachable Directory Service, the documentation and test data uses a publicly WWW hosted DS service.
 
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+You will need to install `Bolt` as part of your bootstrap stage or provide matching environment variables and execute the shell scripts directly.
 
 ### Beginning with puppet_ds
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
+Review the data scheme of the DS json Puppet requires.
+
+```json
+ {"schema" : {
+       "help_link" : [ "maybe", "Str" ],
+       "ssl" : "Bool",
+       "(optional-key :ssl_hostname_validation)" : [ "maybe", "Bool" ],
+       "group_name_attr" : "Str",
+       "password" : [ "maybe", "Str" ],
+       "group_rdn" : [ "maybe", "Str" ],
+       "connect_timeout" : [ "maybe", "Int" ],
+       "(optional-key :start_tls)" : [ "maybe", "Bool" ],
+      "user_display_name_attr" : "Str",
+       "hostname" : "Str",
+       "base_dn" : "Str",
+       "user_lookup_attr" : "Str",
+       "port" : "Int",
+       "login" : [ "maybe", "Str" ],
+       "group_lookup_attr" : "Str",
+       "(optional-key :disable_ldap_matching_rule_in_chain)" : [ "maybe", "Bool" ],
+       "group_member_attr" : "Str",
+       "(optional-key :id)" : [ "eq", 1 ],
+       "(optional-key :ssl_wildcard_validation)" : [ "maybe", "Bool" ],
+       "user_email_attr" : "Str",
+       "(optional-key :search_nested_groups)" : [ "maybe", "Bool" ],
+       "user_rdn" : [ "maybe", "Str" ],
+       "group_object_class" : [ "maybe", "Str" ],
+       "display_name" : "Str",
+       "(optional-key :type)" : [ "maybe", [ "enum", "activedirectory", "openldap", "apacheds" ] ]
+     }
+   }
+```
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
+Currently the module only supports `Puppet Tasks` see [https://puppet.com/docs/bolt/0.x/bolt_running_tasks.html](https://puppet.com/docs/bolt/0.x/bolt_running_tasks.html) for more information on running the provided tasks.
 
-## Reference
 
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
-
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
-
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
-```
 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+The tasks provided will only work on a server configured as the Puppet Enterprise server or MOM.
 
 ## Development
 
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
+Pull requests welcome.
+
+### ToDo
+
+* Create puppet_ds resources equivalent to all tasks.
+
 
 ## Release Notes/Contributors/Etc. **Optional**
 
