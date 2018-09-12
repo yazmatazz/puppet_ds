@@ -1,10 +1,10 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "Set DS data from json data,  {} is accepted but will function as removing all json data (use puppet_ds::unset_ds task) otherwise provide valid json for setting ds.",
+  "description": "Set DS data from json data,  {} is accepted but will function as removing all json data (use puppet_ds::unset_ds task) otherwise provide valid json for setting ds. ",
   "parameters": {
     "ds_json": {
-      "description": "json hash of DS data, the minimal object is { \"base_dn\": \"ou=mathematicians,dc=example,dc=com\", \"display_name\": \"ldap.forumsys.com\", \"group_lookup_attr\": \"ou\", \"group_member_attr\": \"member\", \"group_name_attr\": \"name\", \"hostname\": \"ldap.forumsys.com\", \"port\": 389, \"ssl\": false, \"user_display_name_attr\": \"displayName\", \"user_email_attr\": \"mail\", \"user_lookup_attr\": \"uid\", \"user_rdn\": \"uid\" } ",
+      "description": "json hash of DS data, the minimal object is { \"base_dn\": \"ou=mathematicians,dc=example,dc=com\", \"display_name\": \"ldap.forumsys.com\", \"group_lookup_attr\": \"ou\", \"group_member_attr\": \"member\", \"group_name_attr\": \"name\", \"hostname\": \"ldap.forumsys.com\", \"port\": 389, \"ssl\": false, \"user_display_name_attr\": \"displayName\", \"user_email_attr\": \"mail\", \"user_lookup_attr\": \"uid\", \"user_rdn\": \"uid\", \"login\": \"cn=read-only-admin,dc=example,dc=com\", \"password\" : \"password\", \"group_rdn\" : null, \"help_link\" : null, \"connect_timeout\" : null, \"group_object_class\" : \"ou\"} ",
       "type": "Hash"
     }
   }
