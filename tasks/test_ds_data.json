@@ -1,0 +1,7 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Task to test DS data from API https://puppet.com/docs/pe/2017.3/rbac_api_v1_directory.html#put-ds-test, test is only valid if you have set the data. If setting data in the console you must have saved the configuration to test it",
+  "parameters": {
+  }
+}
