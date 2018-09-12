@@ -8,4 +8,4 @@ hierarchy:
   - name: 'Yaml backend'
     data_hash: yaml_data
     paths:
-      - 'common.yaml'
+      - 'common.json'
