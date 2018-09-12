@@ -2,9 +2,11 @@
   "name": "abuxton-puppet_ds",
   "version": "0.1.0",
   "author": "abuxton",
-  "summary": "",
+  "summary": "Module to provide access to the Puppet Enterprise RBAC_API DS endpoint, allowing users to remotely configure Directory Service intergration for the Puppet Enterprise console.",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/abuxton/puppet_ds",
+  "project_page": "https://github.com/abuxton/puppet_ds",
+  "issues_url": "https://github.com/abuxton/puppet_ds/issues",
   "dependencies": [
 
   ],
