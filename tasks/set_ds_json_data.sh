@@ -29,7 +29,7 @@
 #       "group_object_class" : [ "maybe", "Str" ],
 #       "display_name" : "Str",
 #       "(optional-key :type)" : [ "maybe", [ "enum", "activedirectory", "openldap", "apacheds" ] ]
-#     },
+#     }
 # full json data object
 # {
 #     "base_dn": "ou=mathematicians,dc=example,dc=com", # required
