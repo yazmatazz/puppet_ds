@@ -108,6 +108,7 @@ RSpec.describe Puppet::Provider::PuppetDs::PuppetDs do
 
   describe 'update(context, name, should)' do
     it 'updates the resource' do
+      # rubocop:disable RSpec/SubjectStub
       expect(provider).to receive(:create).with(context, 'foo', name: 'foo', ensure: 'present')
 
       provider.update(context, 'foo', name: 'foo', ensure: 'present')

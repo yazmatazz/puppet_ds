@@ -25,7 +25,7 @@ class Puppet::Provider::PuppetDs::PuppetDs < Puppet::ResourceApi::SimpleProvider
       connection.validate(data)
     end
 
-    connection.config = data
+    connection.config = data # rubocop:disable Lint/UselessSetterCall
   end
 
   def update(context, name, should)
@@ -34,7 +34,7 @@ class Puppet::Provider::PuppetDs::PuppetDs < Puppet::ResourceApi::SimpleProvider
 
   def delete(context, _name)
     connection = Puppet::Util::PuppetDs::Connection.new(context)
-    connection.config = {}
+    connection.config = {} # rubocop:disable Lint/UselessSetterCall
   end
 
   private

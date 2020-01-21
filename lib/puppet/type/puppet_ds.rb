@@ -1,5 +1,7 @@
 require 'puppet/resource_api'
 
+# rubocop:disable Metrics/LineLength
+
 Puppet::ResourceApi.register_type(
   name: 'puppet_ds',
   docs: <<-EOS,
@@ -143,3 +145,4 @@ EOS
     },
   },
 )
+# rubocop:enable Metrics/LineLength

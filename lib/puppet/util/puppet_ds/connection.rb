@@ -3,8 +3,9 @@ require 'faraday'
 require 'json'
 require 'openssl'
 
-# Helper class
+# Util Module
 module Puppet::Util::PuppetDs
+  # Helper class
   class Connection
     attr_accessor :context
     attr_reader :url
@@ -15,7 +16,7 @@ module Puppet::Util::PuppetDs
       ssl_options = Puppet::Util::PuppetDs::Connection.puppet_certs
       ssl_options[:verify] = true
 
-      @connection = Faraday.new(url: @url, ssl: ssl_options, headers: { 'Content-Type' => 'application/json'})
+      @connection = Faraday.new(url: @url, ssl: ssl_options, headers: { 'Content-Type' => 'application/json' })
       @context    = context
 
       context.debug("Created connection to #{@url}")
