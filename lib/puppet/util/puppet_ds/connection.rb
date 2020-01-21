@@ -10,14 +10,10 @@ module Puppet::Util::PuppetDs
     attr_reader :url
 
     def initialize(context, opts = {})
-      @url = opts[:uri] || "https://#{Puppet.settings[:certname]}:4433"
+      @url = opts[:url] || "https://#{Puppet.settings[:certname]}:4433"
 
-      ssl_options = {
-        verify:      true,
-        ca_file:     Puppet.settings[:cacert],
-        client_cert: OpenSSL::X509::Certificate.new(File.read(Puppet.settings[:hostcert])),
-        client_key:  OpenSSL::PKey.read(File.read(Puppet.settings[:hostprivkey])),
-      }
+      ssl_options = Puppet::Util::PuppetDs::Connection.puppet_certs
+      ssl_options[:verify] = true
 
       @connection = Faraday.new(url: @url, ssl: ssl_options, headers: { 'Content-Type' => 'application/json'})
       @context    = context
@@ -53,6 +49,14 @@ module Puppet::Util::PuppetDs
       return true if result.success?
 
       raise StandardError, format_error(result)
+    end
+
+    def self.puppet_certs
+      {
+        ca_file:     Puppet.settings[:cacert],
+        client_cert: OpenSSL::X509::Certificate.new(File.read(Puppet.settings[:hostcert])),
+        client_key:  OpenSSL::PKey.read(File.read(Puppet.settings[:hostprivkey])),
+      }
     end
 
     private
