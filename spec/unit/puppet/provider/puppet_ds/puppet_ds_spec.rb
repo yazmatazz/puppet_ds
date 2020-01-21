@@ -10,6 +10,7 @@ RSpec.describe Puppet::Provider::PuppetDs::PuppetDs do
 
   describe '#get' do
     it 'processes resources' do
+      expect(context).to receive(:debug).with('Returning pre-canned example data')
       expect(provider.get(context)).to eq [
         {
           name: 'foo',
@@ -39,7 +40,7 @@ RSpec.describe Puppet::Provider::PuppetDs::PuppetDs do
     end
   end
 
-  describe 'delete(context, name, should)' do
+  describe 'delete(context, name)' do
     it 'deletes the resource' do
       expect(context).to receive(:notice).with(%r{\ADeleting 'foo'})
 
