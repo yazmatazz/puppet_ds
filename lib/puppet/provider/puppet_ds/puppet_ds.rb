@@ -10,6 +10,7 @@ class Puppet::Provider::PuppetDs::PuppetDs < Puppet::ResourceApi::SimpleProvider
 
     current_config['ensure'] = 'present'
     current_config['name']   = connection.url
+    current_config = keys_to_sym(current_config)
     [current_config]
   end
 
@@ -38,7 +39,14 @@ class Puppet::Provider::PuppetDs::PuppetDs < Puppet::ResourceApi::SimpleProvider
     should.delete(:name)
     should.delete(:ensure)
 
-    # Convert keys to strings
-    should.map { |k, v| [k.to_s, v] }.to_h
+    keys_to_strings(should)
+  end
+
+  def keys_to_strings(hash)
+    hash.map { |k, v| [k.to_s, v] }.to_h
+  end
+
+  def keys_to_sym(hash)
+    hash.map { |k, v| [k.to_sym, v] }.to_h
   end
 end
