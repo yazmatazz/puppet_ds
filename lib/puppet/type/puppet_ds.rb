@@ -5,13 +5,35 @@ require 'puppet/resource_api'
 Puppet::ResourceApi.register_type(
   name: 'puppet_ds',
   docs: <<-EOS,
-@summary a puppet_ds type
+@summary Manages the Directory Services config in PE
 @example
-puppet_ds { 'foo':
-  ensure => 'present',
-}
+    puppet_ds { 'https://pe-201921-master.puppetdebug.vlan:4433':
+      ensure                              => 'present',
+      base_dn                             => 'ou=mathematicians,dc=example,dc=com',
+      connect_timeout                     => 30,
+      disable_ldap_matching_rule_in_chain => true,
+      display_name                        => 'ldap.forumsys.com',
+      group_lookup_attr                   => 'ou',
+      group_member_attr                   => 'member',
+      group_name_attr                     => 'name',
+      group_object_class                  => 'ou',
+      help_link                           => 'http://techsmruti.com/online-ldap-test-server/',
+      hostname                            => 'ldap.forumsys.com',
+      login                               => 'cn=read-only-admin,dc=example,dc=com',
+      password                            => 'password',
+      port                                => 636,
+      search_nested_groups                => true,
+      ssl                                 => true,
+      ssl_hostname_validation             => true,
+      ssl_wildcard_validation             => false,
+      start_tls                           => false,
+      user_display_name_attr              => 'displayName',
+      user_email_attr                     => 'mail',
+      user_lookup_attr                    => 'uid',
+      user_rdn                            => 'uid',
+    }
 
-TODO...
+This must be applied to the Master which has RBAC running on it as it will use the agent's certs to auth.
 EOS
   features: [],
   attributes: {
