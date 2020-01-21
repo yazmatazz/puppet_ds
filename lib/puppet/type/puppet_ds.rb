@@ -23,6 +23,12 @@ EOS
       desc:      'URI of the console to manage, including port i.e. https://mymaster.company.com:4433',
       behaviour: :namevar,
     },
+    force: {
+      type: 'Optional[Boolean]',
+      desc: 'Force will skip validation and force application of the config',
+      behaviour: :parameter,
+      default: false,
+    },
     base_dn: {
       type: 'String',
       desc: '',
@@ -62,12 +68,11 @@ EOS
       default: 'group',
     },
     group_rdn: {
-      type: 'String',
+      type: 'Optional[String]',
       desc: 'The group RDN that you set here is concatenated with the base DN to form the search base when looking up a group',
-      default: 'cn=groups',
     },
     help_link: {
-      type: 'String',
+      type: 'Optional[String]',
       desc: 'If you supply a URL here, a "Need help logging in?" link is displayed on the login screen. The href attribute of this link is set to the URL that you provide',
     },
     hostname: {
@@ -75,11 +80,11 @@ EOS
       desc: 'The FQDN of the directory service to which you are connecting',
     },
     login: {
-      type: 'String',
+      type: 'Optional[String]',
       desc: 'The distinguished name (DN) of the directory service user account that PE uses to query information about users and groups in the directory server',
     },
     password: {
-      type: 'String',
+      type: 'Optional[String]',
       desc: 'The lookup user\'s password',
     },
     port: {
@@ -133,9 +138,8 @@ EOS
       default: 'sAMAccountName',
     },
     user_rdn: {
-      type: 'String',
+      type: 'Optional[String]',
       desc: 'The user RDN that you set here is concatenated with the base DN to form the search base when looking up a user. For example, if you specify ou=users for the user RDN, and your base DN setting is ou=Puppet,dc=example,dc=com, PE finds users that have ou=users,ou=Puppet,dc=example,dc=com in their DN',
-      default: 'cn=users',
     },
   },
 )
